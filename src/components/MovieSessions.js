@@ -5,6 +5,7 @@ import styled from 'styled-components'
 
 export default function MovieSessions() {
   const [session, setSession] = useState([])
+  const [data, setData] = useState([])
   const { movieId } = useParams()
 
   useEffect(() => {
@@ -13,6 +14,7 @@ export default function MovieSessions() {
     promise.then((res) => {
       console.log(res.data)
       setSession(res.data.days)
+      setData(res.data)
     })
 
     promise.catch((err) => {
@@ -39,10 +41,10 @@ export default function MovieSessions() {
             </AvailableSessions>
           )
         })}
-
       </SessionContainer>
       <Footer>
-
+        <img src={data.posterURL} alt="Movie Poster" />
+        <p>{data.title}</p>
       </Footer>
     </>
 
@@ -89,6 +91,27 @@ const SessionContainer = styled.div`
   }
 `
 const Footer = styled.div`
+  position: fixed;
+  bottom: 0;
+  height: 116px;
+  width: 100%;
+  background-color: #DFE6ED;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: 'Roboto';
+  border: 1px solid #9EADBA;
 
+    img {
+      height: 70%;
+      width: auto;
+      border: 8px solid #ffffff;
+      margin: 0 20px 0 18px;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    p {
+      font-size: 24px;
+      color: #293845;
+    }
 
 `
