@@ -109,6 +109,7 @@ const Footer = styled.div`
       margin: 0 20px 0 18px;
       box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     }
+    
     p {
       font-size: 24px;
       color: #293845;
