@@ -1,10 +1,12 @@
-import React from 'react'
+import { Link } from "react-router-dom"
 import styled from 'styled-components'
 
 export default function Movie({ mov }) {
   return (
     <Poster>
-      <img src={mov.posterURL} alt="Poster"/>     
+      <Link to={`/movies/${mov.id}`}>
+        <img src={mov.posterURL} alt="Poster"/>   
+      </Link>
     </Poster>
   )
 }

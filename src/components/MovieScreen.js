@@ -5,7 +5,6 @@ import Movie from "./Movie"
 
 export default function MovieScreen() {
   const [movies, setMovies] = useState([])
-  const [error, setError] = useState(false)
 
   useEffect(() => {
     const URL = "https://mock-api.driven.com.br/api/v5/cineflex/movies"
@@ -13,14 +12,11 @@ export default function MovieScreen() {
 
     promise.then((res) => {
       console.log(res.data)
-      setMovies(res.data) // se o array de imagens chega, guardo no estado
+      setMovies(res.data)
     })
 
     promise.catch((err) => {
     console.log(err.response.data)
-
-    // OPCIONAL => mostrar erro na tela
-    setError(true) // mas seto o erro como true para mostrar a mensagem de erro
     })
   }, [])
 
@@ -45,7 +41,7 @@ const Movies = styled.div`
   gap: 4vh;
   align-items: center;
   justify-content: center;
-  margin-left: 8px;
+  margin-left: 6px;
   width: 100%;
   height: 810px;
 `
