@@ -27,23 +27,27 @@ export default function MovieSessions() {
     <>
       <SessionContainer>
         <h1>Selecione o horário</h1>
+
         {session.map((info) => {
           return (
             <AvailableSessions key={info.id}>
               <h2> {info.weekday} - {info.date} </h2>
+
               <SessionButton >
                 {info.showtimes.map((h) => {
-                  return <Link key={h.id} to={`/seats/${h.id}`}>
+                  return <Link key={h.id} to={`/session/${h.id}`}>
                     <button>{h.name}</button>
                   </Link>
                 })}
               </SessionButton>
+
             </AvailableSessions>
           )
         })}
       </SessionContainer>
+
       <Footer>
-        <img src={data.posterURL} alt="Movie Poster" />
+        <img src={data.posterURL} alt={"Banner " + data.title} />
         <p>{data.title}</p>
       </Footer>
     </>
@@ -63,8 +67,8 @@ const SessionButton = styled.div`
     color: white;
     height: 43px;
     width: 83px;
+    cursor: pointer;
 }
-
 `
 const AvailableSessions = styled.div`
   display: flex;

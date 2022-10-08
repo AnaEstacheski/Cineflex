@@ -10,7 +10,6 @@ export default function Navbar() {
   )
 }
 
-
 const NavBar = styled.div`
   display: flex;
   justify-content: center;
