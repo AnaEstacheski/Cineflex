@@ -81,7 +81,7 @@ export default function SeatsScreen() {
         </SubtitlesContainer>
 
         <FormContainer />  
-        
+
       </SeatsContainer>
       <Footer>
         <img src={seatInfos.movie?.posterURL} alt={"Banner " + seatInfos.movie?.title} />
@@ -127,7 +127,7 @@ const SeatsContainer = styled.div`
   flex-direction: column;
   font-family: 'Roboto';
   gap: 2vh;
-  padding: 30px 30px 20px 30px;
+  padding: 30px 15px 30px 15px;
 
   h1 {
     width: 100%;
@@ -143,7 +143,7 @@ const PickSeats = styled.div`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 1.2vh;
+  gap: 1.5vh;
   width: 100%;
 `
 
@@ -152,16 +152,14 @@ const Seat = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 11px;
-  height: 24px;
-  width: 24px;
+  height: 23px;
+  width: 23px;
   border-radius: 14px;
   background-color: ${(props) => props.color};
   border: 1px solid ${(props) => props.border};
   pointer-events: ${(props) => props.disabled};
 `
 const Footer = styled.div`
-  position: fixed;
-  bottom: 0;
   height: 116px;
   width: 100%;
   background-color: #DFE6ED;
