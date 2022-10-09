@@ -40,6 +40,8 @@ export default function SeatsScreen() {
     setNameSeat(newNameSeat)
   }
 
+  
+
   console.log(clicked)
 
   return (
@@ -80,7 +82,7 @@ export default function SeatsScreen() {
           </div>
         </SubtitlesContainer>
 
-        <FormContainer />  
+        <FormContainer ids={clicked} seatNumber={nameSeat}/>  
 
       </SeatsContainer>
       <Footer>

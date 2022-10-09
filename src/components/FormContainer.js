@@ -3,19 +3,22 @@ import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import styled from 'styled-components'
 
-export default function FormContainer() {
+export default function FormContainer({ ids, seatNumber }) {
   const [name, setName] = useState("")
   const [cpf, setCpf] = useState("")
+  const navigate = useNavigate()
 
   function bookingSeat(e) {
     e.preventDefault()
     const URL = "https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many"
-    // const body = { name, description }
+    const body = { ids, name, cpf }
 
-    const promise = axios.post(URL)
+    const promise = axios.post(URL, body)
 
     promise.then(() => {
-      // navigate("/")
+      console.log('recebi')
+      console.log(body)
+      navigate("/success")
     })
 
     promise.catch((err) => {
@@ -27,14 +30,24 @@ export default function FormContainer() {
 
     <form onSubmit={bookingSeat}>
       <FormStyle>
-        <label>Nome do comprador:</label>
-        <input 
-        placeholder="Digite seu nome..."
+        <label htmlFor="name">Nome do comprador:</label>
+        <input
+          id="name"
+          value={name}
+          onChange={e => setName(e.target.value)}
+          type="text"
+          placeholder="Digite seu nome..."
+          required
         />
 
-        <label>CPF do comprador:</label>
+        <label htmlFor="cpf">CPF do comprador:</label>
         <input
+        id="cpf"
+        value={cpf}
+        onChange={e => setCpf(e.target.value)}
+        type="text"
         placeholder="Digite seu CPF..."
+        required
         />
       </FormStyle>
       <SubmitButton type="submit">Reservar assento(s)</SubmitButton>
