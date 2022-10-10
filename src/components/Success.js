@@ -1,11 +1,11 @@
-import { useLocation } from "react-router-dom"
+import { useLocation, Link } from "react-router-dom"
 import styled from "styled-components"
 
 export default function Success() {
   const { state } = useLocation()
 
   return (
-    <SucessContainer>
+    <SucessContainer data-identifier="seat-infos-reserve-finished">
       <h2>Pedido feito com sucesso!</h2>
       <h3>Filme e Sessão</h3>
       <p>{state.title}</p>
@@ -20,7 +20,13 @@ export default function Success() {
       <p>Nome: {state.buyername}</p>
       <p>CPF: {state.buyerCPF}</p>
 
-     
+      <ButtonHome>
+        <Link to="/">
+          <button data-identifier="back-to-home-btn">
+            Voltar para Home
+          </button>
+        </Link>
+      </ButtonHome>
     </SucessContainer>
   )
 }
@@ -52,5 +58,24 @@ const SucessContainer = styled.div`
     line-height: 26px;
     letter-spacing: 0.04em;
 		margin: 3px 0;
+	}
+`
+const ButtonHome = styled.div`
+	display: flex;
+	justify-content: center;
+
+	button {
+		width: 225px;
+		height: 42px;
+		border: none;
+		background-color: #e8833a;
+		color: #ffffff;
+		border-radius: 3px;
+		margin: 20px 0;
+		padding: 8px 10px;
+		font-size: 18px;
+    line-height: 21px
+    letter-spacing: 0.04em;
+    cursor: pointer;
 	}
 `

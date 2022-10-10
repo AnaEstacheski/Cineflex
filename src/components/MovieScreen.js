@@ -25,7 +25,7 @@ export default function MovieScreen() {
       <Top>
         <h2>Selecione o filme</h2>
       </Top>
-      <Movies>
+      <Movies data-identifier="movie-outdoor">
         {movies.map((mov) => <Movie key={mov.id} mov={mov} />)}
       </Movies>
     </>

@@ -42,6 +42,7 @@ export default function FormContainer({ ids, seatNumber, title, date, hour }) {
       <FormStyle>
         <label htmlFor="name">Nome do comprador:</label>
         <input
+          data-identifier="buyer-name-input"
           id="name"
           value={name}
           type="text"
@@ -52,6 +53,7 @@ export default function FormContainer({ ids, seatNumber, title, date, hour }) {
 
         <label htmlFor="cpf">CPF do comprador:</label>
         <input
+          data-identifier="buyer-cpf-input"
           id="cpf"
           value={cpf}
           type="text"
@@ -64,7 +66,7 @@ export default function FormContainer({ ids, seatNumber, title, date, hour }) {
           required
         />
       </FormStyle>
-      <SubmitButton type="submit">Reservar assento(s)</SubmitButton>
+      <SubmitButton type="submit" data-identifier="reservation-btn">Reservar assento(s)</SubmitButton>
     </form>
   )
 }
@@ -99,12 +101,13 @@ const FormStyle = styled.div`
 `
 
 const SubmitButton = styled.button`
-  margin: 40px 30px 10px 30px;
-  width: 80%;
+  margin: 40px 30px 10px 20px;
+  width: 90%;
   height: 42px;
   background-color: #E8833A;
   border: none;
   border-radius: 3px;
   color: #ffffff;
   font-size: 17px;
+  cursor: pointer;
 `

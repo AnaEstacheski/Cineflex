@@ -25,7 +25,7 @@ export default function MovieSessions() {
 
   return (
     <>
-      <SessionContainer>
+      <SessionContainer data-identifier="session-date">
         <h1>Selecione o horário</h1>
 
         {session.map((info) => {
@@ -33,7 +33,7 @@ export default function MovieSessions() {
             <AvailableSessions key={info.id}>
               <h2> {info.weekday} - {info.date} </h2>
 
-              <SessionButton >
+              <SessionButton data-identifier="hour-minute-btn">
                 {info.showtimes.map((h) => {
                   return <Link key={h.id} to={`/session/${h.id}`}>
                     <button>{h.name}</button>
@@ -46,7 +46,7 @@ export default function MovieSessions() {
         })}
       </SessionContainer>
 
-      <Footer>
+      <Footer data-identifier="movie-img-preview">
         <img src={data.posterURL} alt={"Banner " + data.title} />
         <p>{data.title}</p>
       </Footer>

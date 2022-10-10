@@ -46,7 +46,7 @@ export default function SeatsScreen() {
     <>
       <SeatsContainer>
         <h1>Selecione o(s) assento(s)</h1>
-        <PickSeats>
+        <PickSeats data-identifier="seat">
           {seatInfos.seats?.map((s) => {
             return (
               <Seat
@@ -65,17 +65,17 @@ export default function SeatsScreen() {
             )
           })}
         </PickSeats>
-        <SubtitlesContainer>
+        <SubtitlesContainer >
           <div>
-            <Subtitles color="#1AAE9E" border="#0E7D71" />
+            <Subtitles color="#1AAE9E" border="#0E7D71" data-identifier="seat-selected-subtitle"/>
             <p>Selecionado</p>
           </div>
           <div>
-            <Subtitles color="#C3CFD9" border="#7B8B99" />
+            <Subtitles color="#C3CFD9" border="#7B8B99" data-identifier="seat-available-subtitle"/>
             <p>Disponível</p>
           </div>
           <div>
-            <Subtitles color="#FBE192" border="#F7C52B" />
+            <Subtitles color="#FBE192" border="#F7C52B" data-identifier="seat-unavailable-subtitle"/>
             <p>Indisponível</p>
           </div>
         </SubtitlesContainer>
@@ -164,6 +164,7 @@ const Seat = styled.div`
   background-color: ${(props) => props.color};
   border: 1px solid ${(props) => props.border};
   pointer-events: ${(props) => props.disabled};
+  cursor: pointer;
 `
 const Footer = styled.div`
   height: 116px;
