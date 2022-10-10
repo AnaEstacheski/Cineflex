@@ -1,11 +1,11 @@
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import styled from 'styled-components'
 
-export default function FormContainer({ ids, seatNumber }) {
-  const [name, setName] = useState("")
-  const [cpf, setCpf] = useState("")
+export default function FormContainer({ ids, seatNumber, title, date, hour }) {
+  const [name, setName] = useState()
+  const [cpf, setCpf] = useState()
   const navigate = useNavigate()
 
   function bookingSeat(e) {
@@ -15,11 +15,22 @@ export default function FormContainer({ ids, seatNumber }) {
 
     const promise = axios.post(URL, body)
 
-    promise.then(() => {
-      console.log('recebi')
-      console.log(body)
-      navigate("/success")
-    })
+    promise.then(
+      navigate("/success", {
+        state: {
+          buyername: name,
+          buyerCPF: cpf,
+          seats: { seatNumber },
+          title: title,
+          date: date,
+          hour: hour,
+        }
+      })
+    )
+
+    // {
+    //   console.log(body)
+    // }
 
     promise.catch((err) => {
       console.log(err.response.data)
@@ -27,27 +38,30 @@ export default function FormContainer({ ids, seatNumber }) {
   }
 
   return (
-
     <form onSubmit={bookingSeat}>
       <FormStyle>
         <label htmlFor="name">Nome do comprador:</label>
         <input
           id="name"
           value={name}
-          onChange={e => setName(e.target.value)}
           type="text"
+          onChange={e => setName(e.target.value)}
           placeholder="Digite seu nome..."
           required
         />
 
         <label htmlFor="cpf">CPF do comprador:</label>
         <input
-        id="cpf"
-        value={cpf}
-        onChange={e => setCpf(e.target.value)}
-        type="text"
-        placeholder="Digite seu CPF..."
-        required
+          id="cpf"
+          value={cpf}
+          type="text"
+          maxLength="11"
+          pattern="[0-9]{11}"
+          onInput={(e) => (e.target.setCustomValidity(''))}
+          onChange={e => setCpf(e.target.value.replace(/[^0-9]/g, ''))}
+          onInvalid={(e) => e.target.setCustomValidity('CPF inválido')}
+          placeholder="Digite seu CPF..."
+          required
         />
       </FormStyle>
       <SubmitButton type="submit">Reservar assento(s)</SubmitButton>
@@ -58,10 +72,9 @@ export default function FormContainer({ ids, seatNumber }) {
 const FormStyle = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   font-family: 'Roboto';
-  margin-top: 15px;
- 
+  margin-top: 15px; 
 
   label {
     color: #293845;
@@ -70,17 +83,18 @@ const FormStyle = styled.div`
   }
  
   input {
-    width: 100%;
+    width: 97%;
     height: 37px;
     border: 1px solid #D4D4D4;
-    font-style: italic;
     font-size: 18px;
     margin-bottom: 6px;
+    padding-left: 10px;
   }
 
   input::placeholder {
-   padding-left: 10px;
+   padding-left: 2px;
    color: #AFAFAF;
+   font-style: italic;
   }
 `
 

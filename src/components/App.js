@@ -6,10 +6,8 @@ import SeatsScreen from './SeatsScreen'
 import Success from './Success'
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 
-
-
-
 export default function App() {
+
     return (
         <BrowserRouter>
             <GlobalStyle />

@@ -7,7 +7,7 @@ import FormContainer from "./FormContainer"
 export default function SeatsScreen() {
   const [seatInfos, setSeatInfos] = useState([])
   const [clicked, setClicked] = useState([])
-  const [nameSeat, setNameSeat] = useState([])
+  const [numSeat, setNumSeat] = useState([])
   const { sessionId } = useParams()
 
   useEffect(() => {
@@ -26,21 +26,19 @@ export default function SeatsScreen() {
 
   function click(id, name) {
     let newClick
-    let newNameSeat
+    let newNumSeat
     if (clicked.includes(id)) {
       newClick = clicked.filter((s) => s !== id)
-      newNameSeat = nameSeat.filter((s) => s !== name)
+      newNumSeat = numSeat.filter((s) => s !== name)
       setClicked(newClick)
-      setNameSeat(newNameSeat)
+      setNumSeat(newNumSeat)
       return
     }
     newClick = [...clicked, id]
     setClicked(newClick)
-    newNameSeat = [...nameSeat, name]
-    setNameSeat(newNameSeat)
+    newNumSeat = [...numSeat, name]
+    setNumSeat(newNumSeat)
   }
-
-  
 
   console.log(clicked)
 
@@ -82,7 +80,13 @@ export default function SeatsScreen() {
           </div>
         </SubtitlesContainer>
 
-        <FormContainer ids={clicked} seatNumber={nameSeat}/>  
+        <FormContainer 
+          ids={clicked} 
+          seatNumber={numSeat} 
+          title={seatInfos.movie?.title} 
+          date={seatInfos.day?.date} 
+          hour={seatInfos.name}
+        />  
 
       </SeatsContainer>
       <Footer>
